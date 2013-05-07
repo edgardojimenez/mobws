@@ -2,9 +2,9 @@ mobws
 =====
 
 #Project Description
-mobws are a set of web services to support different  mobile web clients.
+mobws is set of web services to support different  mobile web clients
 WebApi base web services  
-POC to play with different technologies.
+POC to play with different technologies
 
 #Technologies
 * WebApI 
@@ -17,9 +17,9 @@ POC to play with different technologies.
 #Features
 * Rest base Endpoints
 * Supports CORS
-* Backend for 2 mobile apps
+* Backend for mobile apps
 
 #To do
-* JavaScript endpoint test
+* Jasmine.js unit test to test endpoints
 * Authentication
-* Azure Backend
+* Move backend to Azure
