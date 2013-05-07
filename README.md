@@ -7,7 +7,7 @@ WebApi base web services
 POC to play with different technologies
 
 #Technologies
-* WebApI 
+* WebApi
 * Dapper (micro ORM)
 * SQL Server 2012
 * CORS
