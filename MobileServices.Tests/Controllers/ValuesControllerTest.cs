@@ -24,8 +24,8 @@ namespace MobileServices.Tests.Controllers {
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("garo", result.ElementAt(0).Name);
-            Assert.AreEqual("laura", result.ElementAt(1).Name);
+            Assert.AreEqual("Mike", result.ElementAt(0).Name);
+            Assert.AreEqual("Smith", result.ElementAt(1).Name);
         }
 
         [TestMethod]
