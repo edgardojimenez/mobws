@@ -154,6 +154,10 @@
     <Compile Include="App_Start\ResolverConfig.cs" />
     <Compile Include="App_Start\TraceConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\Attributes\InjectionValidatorAttribute.cs" />
+    <Compile Include="Common\Filters\ModelValidationFilterBase.cs" />
+    <Compile Include="Common\Filters\IdValidationFilterAttribute.cs" />
+    <Compile Include="Common\Filters\ModelValidationFilterAttribute.cs" />
     <Compile Include="Common\Resolver.cs" />
     <Compile Include="Controllers\BodyPartsController.cs" />
     <Compile Include="Controllers\GroceriesController.cs" />
@@ -170,6 +174,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\AllowOriginsMessageHandler.cs" />
+    <Compile Include="Handlers\ApiKeyHandler.cs" />
     <Compile Include="Handlers\OptionsMethodMessageHandler.cs" />
     <Compile Include="Models\BodyPart.cs" />
     <Compile Include="Models\Grocery.cs" />
@@ -183,7 +188,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <None Include="Properties\PublishProfiles\test.pubxml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

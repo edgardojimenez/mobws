@@ -41,8 +41,7 @@ namespace MobileServices.Tests.Controllers {
         public void Products_Post() {
             // Arrange
             var moqRepo = new Mock<IGroceryRepository>();
-            moqRepo.Setup(o => o.GetProduct(It.IsAny<string>())).Returns(default(Product));
-            moqRepo.Setup(o => o.AddProduct(It.IsAny<string>(), It.IsAny<bool>()));
+            moqRepo.Setup(o => o.AddProduct(It.IsAny<string>(), It.IsAny<bool?>()));
 
             var controller = new ProductsController(moqRepo.Object);
             var product = new ProductMessage() {
@@ -52,7 +51,6 @@ namespace MobileServices.Tests.Controllers {
             controller.Post(product);
 
             // Assert
-            moqRepo.Verify(o => o.GetProduct(It.IsAny<string>()));
             moqRepo.Verify(o => o.AddProduct(It.IsAny<string>(), It.IsAny<bool>()));
         }
 

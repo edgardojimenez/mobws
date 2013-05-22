@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web.Http;
 using MobileServices.Handlers;
@@ -11,6 +12,7 @@ namespace MobileServices {
     public static class MessageHandlerConfig {
 
         public static void Register(HttpConfiguration config) {
+            config.MessageHandlers.Add(new ApiKeyHandler(ConfigurationManager.AppSettings["ApiKey"]));
             config.MessageHandlers.Add(new OptionsMethodMessageHandler());
             config.MessageHandlers.Add(new AllowOriginsMessageHandler());
         }

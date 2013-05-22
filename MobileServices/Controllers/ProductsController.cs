@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using MobileServices.Common.Filters;
 using MobileServices.Data;
 using MobileServices.Models;
 
@@ -19,38 +20,13 @@ namespace MobileServices.Controllers {
             return GetDividerProducts(_groceryRepository);
         }
 
+        [ModelValidationFilter]
         public Product Post(ProductMessage product) {
-            if (string.IsNullOrWhiteSpace(product.Name)) {
-                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest) {
-                    Content = new StringContent("No product name"),
-                    ReasonPhrase = "Product name was not provided"
-                };
-
-                throw new HttpResponseException(resp);
-            }
-
-            if (_groceryRepository.GetProduct(product.Name) != null) {
-                var resp = new HttpResponseMessage(HttpStatusCode.Conflict) {
-                    Content = new StringContent("Product exsists"),
-                    ReasonPhrase = "Product already exsists"
-                };
-
-                throw new HttpResponseException(resp);
-            }
-
             return _groceryRepository.AddProduct(product.Name, product.AddToList);
         }
 
+        [IdValidationFilter]
         public void Delete(int id) {
-            if (id == 0) {
-                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest) {
-                    Content = new StringContent("No product Id"),
-                    ReasonPhrase = "Product Id was not provided"
-                };
-
-                throw new HttpResponseException(resp);
-            }
-
             _groceryRepository.DeleteProduct(id);
         }
 

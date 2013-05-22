@@ -14,7 +14,7 @@ namespace MobileServices.Data {
         IEnumerable<Product> GetProducts();
         IEnumerable<Grocery> GetGroceries();
         void AddGrocery(int id);
-        Product AddProduct(string name, bool addToList);
+        Product AddProduct(string name, bool? addToList);
         Grocery GetGroceryByProductId(int id); 
         Product GetProduct(string name);
         void DeleteGrocery(int id);

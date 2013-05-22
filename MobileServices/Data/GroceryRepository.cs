@@ -59,7 +59,7 @@ namespace MobileServices.Data {
             }
         }
 
-        public Product AddProduct(string name, bool addTolist) {
+        public Product AddProduct(string name, bool? addTolist) {
             using (var conn = new SqlConnection(_connection)) {
                 conn.Open();
                 conn.Execute("insert into dbo.Products (Name) values (@pname)", new { pname = name });
@@ -70,7 +70,7 @@ namespace MobileServices.Data {
                 throw new InvalidOperationException("The product was not created");
             }
 
-            if (addTolist) {
+            if (addTolist.Value) {
                 AddGrocery(product.Id);
             }
 

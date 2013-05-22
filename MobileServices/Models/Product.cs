@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using MobileServices.Common.Attributes;
 
 namespace MobileServices.Models {
 
@@ -11,7 +13,11 @@ namespace MobileServices.Models {
     }
 
     public class ProductMessage {
+        [Required]
+        [StringLength(32)]
+        [InjectionValidator]
         public string Name { get; set; }
-        public bool AddToList { get; set; }
+        [Required]
+        public bool? AddToList { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using MobileServices.Common.Filters;
 using MobileServices.Data;
 using MobileServices.Models;
 
@@ -20,31 +20,15 @@ namespace MobileServices.Controllers {
             return _groceryRepository.GetGroceries();
         }
 
+        [IdValidationFilter]
         [HttpGet]
         public void AddGrocery(int id) {
-            if (id == 0) {
-                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest) {
-                    Content = new StringContent("No product Id"),
-                    ReasonPhrase = "Product Id was not provided"
-                };
-
-                throw new HttpResponseException(resp);
-            }
-
             if (_groceryRepository.GetGroceryByProductId(id) == null)
                 _groceryRepository.AddGrocery(id);
         }
 
+        [IdValidationFilter]
         public void Delete(int id) {
-            if (id == 0) {
-                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest) {
-                    Content = new StringContent("No product Id"),
-                    ReasonPhrase = "Product Id was not provided"
-                };
-
-                throw new HttpResponseException(resp);
-            }
-
             _groceryRepository.DeleteGrocery(id);
         }
 

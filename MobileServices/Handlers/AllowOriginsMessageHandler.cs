@@ -11,7 +11,7 @@ namespace MobileServices.Handlers {
     public class AllowOriginsMessageHandler : DelegatingHandler {
         private const string OriginHeader = "Origin";
 
-        async protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
+        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
             var response = await base.SendAsync(request, cancellationToken);
 
             if (request.Headers.Contains(OriginHeader)) {

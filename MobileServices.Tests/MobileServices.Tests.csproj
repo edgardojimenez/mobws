@@ -124,10 +124,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\IdValidationFilterAttributeTest.cs" />
+    <Compile Include="Actions\ModelValidationFilterTest.cs" />
     <Compile Include="Controllers\BodyPartsControllerTest.cs" />
     <Compile Include="Controllers\GroceriesControllerTest.cs" />
     <Compile Include="Controllers\ProductsControllerTest.cs" />
     <Compile Include="GroceryRepositoryIntegrationTest.cs" />
+    <Compile Include="Attributes\InjectionValidatorAttributeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
     <Compile Include="PmdRepositoryIntegrationTest.cs" />
@@ -144,6 +147,7 @@
       <Name>MobileServices</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

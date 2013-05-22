@@ -9,6 +9,7 @@ using System.Web;
 
 namespace MobileServices.Handlers {
     public class OptionsMethodMessageHandler : DelegatingHandler {
+
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
 
             if (request.Method == HttpMethod.Options) {
