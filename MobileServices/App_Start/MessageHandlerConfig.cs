@@ -12,8 +12,8 @@ namespace MobileServices {
     public static class MessageHandlerConfig {
 
         public static void Register(HttpConfiguration config) {
-            config.MessageHandlers.Add(new ApiKeyHandler(ConfigurationManager.AppSettings["ApiKey"]));
             config.MessageHandlers.Add(new OptionsMethodMessageHandler());
+            config.MessageHandlers.Add(new ApiKeyHandler(ConfigurationManager.AppSettings["X-Api-Key"]));
             config.MessageHandlers.Add(new AllowOriginsMessageHandler());
         }
     }

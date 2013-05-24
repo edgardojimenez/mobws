@@ -11,7 +11,7 @@ namespace MobileServices.Handlers {
     public class ApiKeyHandler : DelegatingHandler {
 
         private readonly string _key;
-        private const string KeyName = "ApiKey";
+        private const string KeyName = "X-Api-Key";
 
         public ApiKeyHandler(string key) {
             _key = key;

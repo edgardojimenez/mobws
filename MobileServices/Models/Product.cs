@@ -17,7 +17,6 @@ namespace MobileServices.Models {
         [StringLength(32)]
         [InjectionValidator]
         public string Name { get; set; }
-        [Required]
-        public bool? AddToList { get; set; }
+        public bool AddToList { get; set; }
     }
 }
