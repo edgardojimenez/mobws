@@ -155,6 +155,7 @@
     <Compile Include="App_Start\TraceConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Attributes\InjectionValidatorAttribute.cs" />
+    <Compile Include="Common\Filters\UpperCaseFilterAttribute.cs" />
     <Compile Include="Common\Filters\ModelValidationFilterBase.cs" />
     <Compile Include="Common\Filters\IdValidationFilterAttribute.cs" />
     <Compile Include="Common\Filters\ModelValidationFilterAttribute.cs" />

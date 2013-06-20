@@ -21,6 +21,7 @@ namespace MobileServices.Controllers {
         }
 
         [ModelValidationFilter]
+        [UpperCaseFilter]
         public Product Post(ProductMessage product) {
             return _groceryRepository.AddProduct(product.Name, product.AddToList);
         }

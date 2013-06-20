@@ -60,12 +60,21 @@ namespace MobileServices.Data {
         }
 
         public Product AddProduct(string name, bool? addTolist) {
+            var product = GetProduct(name);
+
+            if (product != null) {
+                return new Product() {
+                    Id = -1,
+                    Name = name
+                };
+            }
+
             using (var conn = new SqlConnection(_connection)) {
                 conn.Open();
                 conn.Execute("insert into dbo.Products (Name) values (@pname)", new { pname = name });
             }
 
-            var product = GetProduct(name);
+            product = GetProduct(name);
             if (product == null) {
                 throw new InvalidOperationException("The product was not created");
             }
