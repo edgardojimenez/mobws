@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http.Dependencies;
 using MobileServices.Controllers;
 using MobileServices.Data;
+using MobileServices.Services;
 
 namespace MobileServices.Common {
     public class Resolver : IDependencyResolver {
@@ -13,6 +14,7 @@ namespace MobileServices.Common {
 
         static readonly IPmdRepository _pmdRespository = new PmdRepository(_connectionString);
         static readonly IGroceryRepository _groceryRespository = new GroceryRepository(_connectionString);
+        static readonly IGroceryService _groceryService = new GroceryService();
 
         public IDependencyScope BeginScope() {
             return this;
@@ -32,7 +34,7 @@ namespace MobileServices.Common {
                 return new StatisticController(_pmdRespository);
 
             if (serviceType == typeof(ProductsController))
-                return new ProductsController(_groceryRespository);
+                return new ProductsController(_groceryRespository, _groceryService);
 
             if (serviceType == typeof(GroceriesController))
                 return new GroceriesController(_groceryRespository);

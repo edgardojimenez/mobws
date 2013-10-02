@@ -16,7 +16,7 @@ namespace MobileServices.Tests {
         private string _connection = ConfigurationManager.ConnectionStrings["mobws"].ConnectionString;
 
         [TestMethod]
-        public void Should_return_all_Products() {
+        public void Should_return_Products_Not_In_Groceries() {
             var repo = new GroceryRepository(_connection);
 
             const string name = "blabla";
@@ -34,6 +34,26 @@ namespace MobileServices.Tests {
 
         [TestMethod]
         public void Should_return_all_Groceries() {
+            var repo = new GroceryRepository(_connection);
+
+            const string name = "blabla";
+
+            repo.AddProduct(name, false);
+            var product = repo.GetProduct(name);
+            repo.AddGrocery(product.Id);
+
+            var groceries = repo.GetGroceries().ToList();
+
+            Assert.IsNotNull(groceries);
+            Assert.IsTrue(groceries.Any());
+            Assert.IsNotNull(groceries.FirstOrDefault());
+
+            repo.DeleteGrocery(product.Id);
+            repo.DeleteProduct(product.Id);
+        }
+
+        [TestMethod]
+        public void Should_return_all_Products() {
             var repo = new GroceryRepository(_connection);
 
             const string name = "blabla";

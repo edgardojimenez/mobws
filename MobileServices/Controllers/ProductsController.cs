@@ -7,17 +7,25 @@ using System.Web.Http;
 using MobileServices.Common.Filters;
 using MobileServices.Data;
 using MobileServices.Models;
+using MobileServices.Services;
 
 namespace MobileServices.Controllers {
     public class ProductsController : ApiController {
         private readonly IGroceryRepository _groceryRepository;
+        private readonly IGroceryService _groceryService;
 
-        public ProductsController(IGroceryRepository groceryRepository) {
+
+        public ProductsController(IGroceryRepository groceryRepository, IGroceryService groceryService ) {
             _groceryRepository = groceryRepository;
+            _groceryService = groceryService;
         }
         
         public IEnumerable<Product> Get() {
-            return GetDividerProducts(_groceryRepository);
+            return _groceryService.AddDividersToProducts(_groceryRepository.GetProducts().ToList());
+        }
+
+        public IEnumerable<Product> Get(string id) {
+            return _groceryService.AddDividersToProducts(_groceryService.GetProductsNotInGroceries(_groceryRepository));
         }
 
         [ModelValidationFilter]
@@ -29,34 +37,6 @@ namespace MobileServices.Controllers {
         [IdValidationFilter]
         public void Delete(int id) {
             _groceryRepository.DeleteProduct(id);
-        }
-
-        private IEnumerable<Product> GetDividerProducts(IGroceryRepository _data) {
-            List<Product> selectedProducts = null;
-            if (!_data.GetGroceries().Any()) {
-                selectedProducts = _data.GetProducts().ToList();
-            } else {
-
-                var groceries = _data.GetGroceries().Select(p => p.ProductId).ToArray();
-                var products = _data.GetProducts().Select(p => p.Id).ToArray();
-                var unselected = products.Except(groceries);
-
-                selectedProducts = _data.GetProducts().Where(p => unselected.Contains(p.Id)).ToList();
-            }
-
-            var alphabet = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-            var dividerProducts = new List<Product>();
-            var orderProductList = selectedProducts.OrderBy(o => o.Name).ToList();
-
-            foreach (var product in orderProductList) {
-                var letter = product.Name.Substring(0, 1).ToUpper();
-                if (alphabet.Contains(letter)) {
-                    dividerProducts.Add(new Product() { Id = -1, Name = letter });
-                    alphabet.Remove(letter);
-                }
-                dividerProducts.Add(product);
-            }
-            return dividerProducts;
         }
     }
 }
