@@ -23,7 +23,7 @@ namespace MobileServices.Common.Filters {
                 if (!int.TryParse(value, out id)) {
                     errors[key] = new List<string> {value};
                 } else {
-                    if (id == 0)
+                    if (id == 0 || id == -1)
                         errors[key] = new List<string> {value};
                 }
 
